@@ -15,6 +15,7 @@ function HashMap() {
 
   function set(key, value) {
     const index = hash(key);
+    if (capacity * load_factor < length()) grow();
     if (!array[index]) {
       array[index] = createNode(key, value);
     } else {
@@ -22,6 +23,13 @@ function HashMap() {
       while (head.next) head = head.next;
       head.next = createNode(key, value);
     }
+  }
+
+  function grow() {
+    capacity = capacity * 2;
+    const _entries = entries();
+    array = new Array(capacity).fill(null);
+    _entries.forEach((entry) => set(entry[0], entry[1]));
   }
 
   function get(key) {
@@ -114,7 +122,7 @@ function HashMap() {
     return _entries;
   }
 
-  return { set, get, has, keys, values, entries, remove, length, clear};
+  return { set, get, has, keys, values, entries, remove, length, clear };
 }
 
 // Test data
@@ -131,4 +139,8 @@ function HashMap() {
 // test.set('jacket', 'blue');
 // test.set('kite', 'pink');
 // test.set('lion', 'golden');
-// console.log(test.entries());
+// test.set('a', 'golden');
+// test.set('li', 'golden');
+// test.set('b', 'golden');
+// test.set('z', 'golden');
+// test.set('f', 'golden');
