@@ -55,13 +55,16 @@ function HashMap() {
   function remove(key) {
     const index = hash(key);
     let head = array[index];
+    let prev = null;
     while (head) {
       if (head.key === key) break;
+      prev = head;
       head = head.next;
     }
     if (!head) return false;
+    else if (!prev) array[index] = head.next;
+    else prev.next = head.next;
     const { value } = head;
-    Object.assign(head, head.next);
     return [key, value];
   }
 
@@ -126,21 +129,16 @@ function HashMap() {
 }
 
 // Test data
-// const test = HashMap();
-// test.set('apple', 'red');
-// test.set('banana', 'yellow');
-// test.set('carrot', 'orange');
-// test.set('dog', 'brown');
-// test.set('elephant', 'gray');
-// test.set('frog', 'green');
-// test.set('grape', 'purple');
-// test.set('hat', 'black');
-// test.set('ice cream', 'white');
-// test.set('jacket', 'blue');
-// test.set('kite', 'pink');
-// test.set('lion', 'golden');
-// test.set('a', 'golden');
-// test.set('li', 'golden');
-// test.set('b', 'golden');
-// test.set('z', 'golden');
-// test.set('f', 'golden');
+const test = HashMap();
+test.set('apple', 'red');
+test.set('banana', 'yellow');
+test.set('carrot', 'orange');
+test.set('dog', 'brown');
+test.set('elephant', 'gray');
+test.set('frog', 'green');
+test.set('grape', 'purple');
+test.set('hat', 'black');
+test.set('ice cream', 'white');
+test.set('jacket', 'blue');
+test.set('kite', 'pink');
+test.set('lion', 'golden');
