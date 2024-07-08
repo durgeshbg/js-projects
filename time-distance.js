@@ -2,7 +2,7 @@ const d1 = new Date('2024-07-04T14:01:52.723Z');
 function distance(d1, d2 = new Date(), plural = '') {
   const y_gap = d2.getFullYear() - d1.getFullYear();
   const m_gap = d2.getMonth() - d1.getMonth();
-  const d_gap = d2.getDay() - d1.getDay();
+  const d_gap = d2.getDate() - d1.getDate();
   const hh_gap = d2.getHours() - d1.getHours();
   const mm_gap = d2.getMinutes() - d1.getMinutes();
   const ss_gap = d2.getSeconds() - d1.getSeconds();
